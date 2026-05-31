@@ -1,10 +1,10 @@
 {
-  "name": "envcheck",
+  "name": "dotcheck",
   "version": "0.1.0",
   "description": "Validate a project's .env against a contract so missing, extra, or empty variables are caught locally and in CI.",
   "type": "module",
   "bin": {
-    "envcheck": "./dist/cli.js"
+    "dotcheck": "./dist/cli.js"
   },
   "exports": {
     ".": {
@@ -35,11 +35,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abdulmunimjemal/envcheck.git"
+    "url": "git+https://github.com/abdulmunimjemal/dotcheck.git"
   },
-  "homepage": "https://oss.munim.io/envcheck/",
+  "homepage": "https://oss.munim.io/dotcheck/",
   "bugs": {
-    "url": "https://github.com/abdulmunimjemal/envcheck/issues"
+    "url": "https://github.com/abdulmunimjemal/dotcheck/issues"
   },
   "dependencies": {
     "picocolors": "^1.1.1"

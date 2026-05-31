@@ -1,8 +1,8 @@
-# envcheck
+# dotcheck
 
 > Validate your `.env` against a contract so missing, extra, or empty variables are caught — locally and in CI.
 
-`envcheck` compares your real `.env` file against a committed `.env.example` (the contract). It tells you which keys the example expects but your `.env` is **missing**, which keys your `.env` defines that the example doesn't know about (**extra**), and which required keys are present but **empty**. It exits non-zero on problems, so it drops straight into a CI pipeline as a gate.
+`dotcheck` compares your real `.env` file against a committed `.env.example` (the contract). It tells you which keys the example expects but your `.env` is **missing**, which keys your `.env` defines that the example doesn't know about (**extra**), and which required keys are present but **empty**. It exits non-zero on problems, so it drops straight into a CI pipeline as a gate.
 
 - Zero config — auto-detects `.env` and `.env.example` in the current directory.
 - One tiny dependency ([picocolors](https://github.com/alexreardon/picocolors) for output).
@@ -11,22 +11,22 @@
 
 ## Why
 
-The `.env.example` in your repo is supposed to document every variable the app needs. In practice it drifts: someone adds a variable to their local `.env` and forgets the example, or a teammate clones the repo, copies the example, and ships with a blank `API_KEY`. `envcheck` turns that implicit contract into something you can actually enforce.
+The `.env.example` in your repo is supposed to document every variable the app needs. In practice it drifts: someone adds a variable to their local `.env` and forgets the example, or a teammate clones the repo, copies the example, and ships with a blank `API_KEY`. `dotcheck` turns that implicit contract into something you can actually enforce.
 
 ## Install
 
 ```sh
-pnpm add -D envcheck
+pnpm add -D dotcheck
 # or
-npm install --save-dev envcheck
+npm install --save-dev dotcheck
 # or
-yarn add -D envcheck
+yarn add -D dotcheck
 ```
 
 Run it without installing:
 
 ```sh
-npx envcheck
+npx dotcheck
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ npx envcheck
 From a project root containing `.env` and `.env.example`:
 
 ```sh
-envcheck
+dotcheck
 ```
 
 ```
@@ -85,7 +85,7 @@ name: env
 on: [push, pull_request]
 
 jobs:
-  envcheck:
+  dotcheck:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -94,14 +94,14 @@ jobs:
           node-version: 20
       # In CI you usually only commit .env.example, so check the example
       # against itself, or against an .env you materialise from secrets.
-      - run: npx envcheck --env .env.example --example .env.example
+      - run: npx dotcheck --env .env.example --example .env.example
 ```
 
 ## Library API
 
 ```ts
-import { parseEnv, compareEnv } from "envcheck";
-import type { CompareResult } from "envcheck";
+import { parseEnv, compareEnv } from "dotcheck";
+import type { CompareResult } from "dotcheck";
 
 const env = parseEnv("FOO=bar\nexport BAZ='qux'");
 // → { FOO: "bar", BAZ: "qux" }

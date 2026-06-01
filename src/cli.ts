@@ -8,10 +8,10 @@ import { exitCodeFor, formatReport } from "./report.js";
 
 const VERSION = "0.1.0";
 
-const HELP = `${pc.bold("dotcheck")} — validate a .env against a .env.example contract
+const HELP = `${pc.bold("envvet")} — validate a .env against a .env.example contract
 
 ${pc.bold("Usage")}
-  dotcheck [options]
+  envvet [options]
 
 ${pc.bold("Options")}
   --env <path>       Path to the env file to check   (default: .env)
